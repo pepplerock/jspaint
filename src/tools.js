@@ -598,7 +598,7 @@ const tools = [{
 		});
 	},
 	paint(ctx, x, y) {
-		if (x >= 0 && y >= 0 && x < main_canvas.width && y < main_canvas.height) {
+		if (x >= 0 && y >= 0 && x < ctx.canvas.width && y < ctx.canvas.height) {
 			const id = ctx.getImageData(~~x, ~~y, 1, 1);
 			const [r, g, b, a] = id.data;
 			this.current_color = `rgba(${r},${g},${b},${a / 255})`;
