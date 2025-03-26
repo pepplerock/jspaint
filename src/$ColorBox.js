@@ -67,6 +67,15 @@ function update_$swatch($swatch, new_color) {
 	new_color = new_color || $swatch.data("swatch");
 	new_color = legalizeColor(new_color);
 	$swatch.data("swatch", new_color);
+	if ($swatch.hasClass("foreground-color")) {
+		selected_colors["foreground"] = new_color;
+	}
+	if ($swatch.hasClass("background-color")) {
+		selected_colors["background"] = new_color;
+	}
+	if ($swatch.hasClass("current-colors")) {
+		selected_colors["ternary"] = new_color;
+	}
 	const swatch_canvas = /** @type {PixelCanvas} */ (
 		$swatch.find("canvas")[0]
 	);
