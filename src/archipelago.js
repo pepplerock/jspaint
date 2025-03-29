@@ -56,6 +56,9 @@ $("<button>Connect!</button>").on("click", function () {
 				}
 				update();
 			});
+			client.socket.on("disconnected", function () {
+				$ap_options_window.show();
+			})
 			$ap_options_window.hide();
 		})
 		.catch(console.error)
