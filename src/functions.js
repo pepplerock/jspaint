@@ -2106,9 +2106,9 @@ function calculate_similarity() {
 				var main_offset = (x + y * main_canvas.width) * 4;
 				var goal_offset = (x + y * 800) * 4;
 				if (version_below("0.2.0")) {
-					s += 1 - ((main_pixels.data[main_offset] - goal_pixels.data[goal_offset]) +
-						(main_pixels.data[main_offset + 1] - goal_pixels.data[goal_offset + 1]) +
-						(main_pixels.data[main_offset + 2] - goal_pixels.data[goal_offset + 2])) / 765;
+					s += 1 - (Math.abs(main_pixels.data[main_offset] - goal_pixels.data[goal_offset]) +
+						Math.abs(main_pixels.data[main_offset + 1] - goal_pixels.data[goal_offset + 1]) +
+						Math.abs(main_pixels.data[main_offset + 2] - goal_pixels.data[goal_offset + 2])) / 765;
 				}
 				else {
 					s += 1 - Math.sqrt(((main_pixels.data[main_offset] - goal_pixels.data[goal_offset]) ** 2 +
