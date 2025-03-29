@@ -1416,7 +1416,7 @@ $canvas.on("pointermove", (e) => {
 	$status_position.text(`${pointer.x},${pointer.y}`);
 });
 $goal.on("pointermove", (e) => {
-	pointer = to_canvas_coords(e);
+	pointer = to_canvas_coords(e, true);
 	$status_position.text(`${pointer.x},${pointer.y}`);
 });
 $canvas.on("pointerenter", (e) => {
