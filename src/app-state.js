@@ -16,8 +16,8 @@ const default_magnification = 1;
 /** @type {Tool} */
 let default_tool = window.get_tool_by_id(window.TOOL_BRUSH);
 
-const default_canvas_width = 400;
-const default_canvas_height = 300;
+const default_canvas_width = 800;
+const default_canvas_height = 600;
 let my_canvas_width = default_canvas_width;
 let my_canvas_height = default_canvas_height;
 

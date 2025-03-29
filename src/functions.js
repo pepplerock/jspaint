@@ -965,7 +965,13 @@ function open_from_image_info(info, callback, canceled, into_existing_session, f
 	reset_canvas_and_history(); // (with newly reset colors)
 	set_magnification(default_magnification);*/
 
-	createImageBitmap(info.image || info.image_data).then(function (e) { goal_ctx.drawImage(e, 0, 0, 800, 600) });
+	if (from_session_load) {
+		console.log(info, main_canvas.width, main_canvas.height);
+		createImageBitmap(info.image || info.image_data).then(function (e) { main_ctx.drawImage(e, 0, 0, e.width, e.height) });
+	}
+	else {
+		createImageBitmap(info.image || info.image_data).then(function (e) { goal_ctx.drawImage(e, 0, 0, 800, 600) });
+	}
 	/*apply_file_format_and_palette_info(info);
 	transparency = has_any_transparency(main_ctx);
 	$canvas_area.trigger("resize");
