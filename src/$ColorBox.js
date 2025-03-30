@@ -205,7 +205,6 @@ function $ColorBox(vertical) {
 
 export {
 	$ColorBox,
-	$Swatch,
-	update_$swatch
+	$Swatch, legalizeColor, update_$swatch
 };
 

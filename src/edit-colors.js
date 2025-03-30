@@ -1,7 +1,7 @@
 // @ts-check
 /* global palette:writable */
 /* global $colorbox, localize, main_ctx, monochrome, selected_colors, selection */
-import { $Swatch, update_$swatch } from "./$ColorBox.js";
+import { $Swatch, legalizeColor, update_$swatch } from "./$ColorBox.js";
 import { $DialogWindow } from "./$ToolWindow.js";
 // import { localize } from "./app-localization.js";
 import { basic_colors, custom_colors } from "./color-data.js";
@@ -368,7 +368,7 @@ function choose_color(initial_color, callback) {
 		lum_arrow_canvas.style.left = "215px";
 		lum_arrow_canvas.style.top = `${3 + ~~((1 - lum_percent / 100) * luminosity_canvas.height)}px`;
 
-		result_canvas.ctx.fillStyle = get_current_color();
+		result_canvas.ctx.fillStyle = legalizeColor(get_current_color());
 		result_canvas.ctx.fillRect(0, 0, result_canvas.width, result_canvas.height);
 	};
 	draw();
