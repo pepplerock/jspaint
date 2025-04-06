@@ -145,6 +145,9 @@ function update_magnified_canvas_size() {
 	$goal.css("width", goal_canvas.width * magnification);
 	$goal.css("height", goal_canvas.height * magnification);
 	$goal.css("left", goal_canvas.width * magnification + 10);
+	$diff.css("width", goal_canvas.width * magnification);
+	$diff.css("height", goal_canvas.height * magnification);
+	$diff.css("left", goal_canvas.width * magnification + 10);
 
 	update_canvas_rect();
 }
