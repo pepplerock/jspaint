@@ -1,6 +1,7 @@
 // @ts-check
 /* global selection:writable, stroke_size:writable, textbox:writable */
 /* global $canvas, $canvas_area, $status_size, airbrush_size, brush_shape, brush_size, button, canvas_handles, ctrl, eraser_size, fill_color, pick_color_slot, get_language, localize, magnification, main_canvas, main_ctx, pencil_size, pointer, pointer_active, pointer_over_canvas, pointer_previous, pointer_start, return_to_magnification, selected_colors, shift, stroke_color, transparency */
+import { legalizeColor } from "./$ColorBox.js";
 import { OnCanvasSelection } from "./OnCanvasSelection.js";
 import { OnCanvasTextBox } from "./OnCanvasTextBox.js";
 // import { get_language, localize } from "./app-localization.js";
@@ -601,7 +602,7 @@ const tools = [{
 		if (x >= 0 && y >= 0 && x < ctx.canvas.width && y < ctx.canvas.height) {
 			const id = ctx.getImageData(~~x, ~~y, 1, 1);
 			const [r, g, b, a] = id.data;
-			this.current_color = `rgba(${r},${g},${b},${a / 255})`;
+			this.current_color = legalizeColor(`rgba(${r},${g},${b},${a / 255})`);
 		} else {
 			this.current_color = "white";
 		}
