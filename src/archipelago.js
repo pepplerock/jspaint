@@ -69,8 +69,15 @@ $("<button>Connect!</button>").on("click", function () {
 
 function send(similarity) {
 	var locations = [];
-	for (var i = 1; i <= similarity; i++) {
-		locations.push(198500 + i);
+	if (version_below("0.4.0")) {
+		for (var i = 1; i <= similarity; i++) {
+			locations.push(198500 + i);
+		}
+	}
+	else {
+		for (var i = 1; i <= similarity * 4; i++) {
+			locations.push(198600 + i);
+		}
 	}
 	client.check(...locations);
 	if (similarity >= slotData.goal_percent) client.goal();
