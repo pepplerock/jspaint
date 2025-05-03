@@ -61,7 +61,10 @@ $("<button>Connect!</button>").on("click", function () {
 			})
 			$ap_options_window.hide();
 		})
-		.catch(console.error)
+		.catch(function (e) {
+			console.error(e);
+			alert(e);
+		})
 }).appendTo($ap_options_window.$content);
 
 function send(similarity) {
