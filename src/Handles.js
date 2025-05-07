@@ -72,7 +72,7 @@ function Handles(options) {
 		let dragged = false;
 		const resizes_height = y_axis !== HANDLE_MIDDLE;
 		const resizes_width = x_axis !== HANDLE_MIDDLE;
-		if (true /*size_only && (y_axis === HANDLE_TOP || x_axis === HANDLE_LEFT)*/) {
+		if (size_only) {
 			$h.addClass("useless-handle");
 			$grab_region.remove();
 		} else {
