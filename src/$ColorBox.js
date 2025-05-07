@@ -140,6 +140,9 @@ function $ColorBox(vertical) {
 			if (color_selection_slot) {
 				if (within_double_click_period && e.button === double_click_button) {
 					show_edit_colors_window($b, color_selection_slot);
+				} else if (e.shiftKey) {
+					update_$swatch($b, selected_colors[color_selection_slot]);
+					$G.trigger("option-changed");
 				} else {
 					selected_colors[color_selection_slot] = $b.data("swatch");
 					$G.trigger("option-changed");
