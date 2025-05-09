@@ -19,6 +19,7 @@ $("<button>Connect!</button>").on("click", function () {
 		.then(function (e) {
 			console.log("Connected to the Archipelago server!", e);
 			slotData = e;
+			if (slotData.version) $("#appaint-version").text("APWorld Version " + slotData.version);
 			//$goal_image.src = "images/archipelago/" + slotData.goal_image + ".png";
 			$G.triggerHandler("restore-colors");
 			update();

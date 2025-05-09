@@ -1011,7 +1011,7 @@ input[type="radio"] + label::before {
 	font-size: 2rem;
 	margin: 0;
 }
-#jspaint-version {
+#jspaint-version, #appaint-version {
 	/* @TODO: separate some of this into a shared.css? (not all layout!) */
 	white-space: nowrap;
 	font-size: 1.4rem;
