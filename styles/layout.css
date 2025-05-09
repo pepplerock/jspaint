@@ -233,6 +233,21 @@ html, body, .jspaint {
 	width: 25px;
 	height: 25px;
 }
+.eye-gaze-mode .colors-component.wide {
+	height: 50px;
+}
+.eye-gaze-mode .colors-component.wide .color-box {
+	height: 100%;
+}
+.eye-gaze-mode .colors-component.wide .current-colors {
+	height: 100%;
+}
+.eye-gaze-mode .colors-component.wide .foreground-color {
+	top: 12px;
+}
+.eye-gaze-mode .colors-component.wide .background-color {
+	bottom: 12px;
+}
 .eye-gaze-mode .colors-component.tall {
 	width: 50px;
 }
@@ -247,6 +262,17 @@ html, body, .jspaint {
 }
 .eye-gaze-mode .colors-component.tall .background-color {
 	right: 12px;
+}
+
+.eye-gaze-mode .status-area {
+	font-size: 2rem;
+}
+.eye-gaze-mode .status-field {
+	height: 3rem;
+	line-height: 2.5rem;
+}
+.eye-gaze-mode .status-coordinates {
+	flex: 0 0 17rem;
 }
 
 .eye-gaze-mode .os-window .window-titlebar {
@@ -288,9 +314,9 @@ html, body, .jspaint {
 	mask-size: 1.2em 1.2em;
 }
 
-.eye-gaze-mode .status-area {
+/*.eye-gaze-mode .status-area {
 	padding-left: 170px;
-}
+}*/
 
 .eye-gaze-mode-floating-buttons {
 	position: fixed;

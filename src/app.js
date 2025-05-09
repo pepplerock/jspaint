@@ -316,27 +316,27 @@ const update_from_url_params = () => {
 		if (!$("body").hasClass("eye-gaze-mode")) {
 			$("body").addClass("eye-gaze-mode");
 			$G.triggerHandler("eye-gaze-mode-toggled");
-			$G.triggerHandler("theme-load"); // signal layout change
+			//$G.triggerHandler("theme-load"); // signal layout change
 		}
 	} else {
 		if ($("body").hasClass("eye-gaze-mode")) {
 			$("body").removeClass("eye-gaze-mode");
 			$G.triggerHandler("eye-gaze-mode-toggled");
-			$G.triggerHandler("theme-load"); // signal layout change
+			//$G.triggerHandler("theme-load"); // signal layout change
 		}
 	}
 
-	if (location.hash.match(/vertical-color-box-mode|eye-gaze-mode/i)) {
+	if (location.hash.match(/vertical-color-box-mode/i)) {
 		if (!$("body").hasClass("vertical-color-box-mode")) {
 			$("body").addClass("vertical-color-box-mode");
 			$G.triggerHandler("vertical-color-box-mode-toggled");
-			$G.triggerHandler("theme-load"); // signal layout change
+			//$G.triggerHandler("theme-load"); // signal layout change
 		}
 	} else {
 		if ($("body").hasClass("vertical-color-box-mode")) {
 			$("body").removeClass("vertical-color-box-mode");
 			$G.triggerHandler("vertical-color-box-mode-toggled");
-			$G.triggerHandler("theme-load"); // signal layout change
+			//$G.triggerHandler("theme-load"); // signal layout change
 		}
 	}
 
@@ -722,17 +722,26 @@ window.$colorbox = $colorbox;
 $G.on("vertical-color-box-mode-toggled", () => {
 	$colorbox.destroy();
 	$colorbox = $ColorBox($("body").hasClass("vertical-color-box-mode"));
+	$colorbox.rebuild_palette(palette);
 	window.$colorbox = $colorbox;
 	prevent_selection($colorbox);
 });
 $G.on("eye-gaze-mode-toggled", () => {
 	$colorbox.destroy();
 	$colorbox = $ColorBox($("body").hasClass("vertical-color-box-mode"));
+	$colorbox.rebuild_palette(palette);
 	window.$colorbox = $colorbox;
 	prevent_selection($colorbox);
 
+	var classes = [];
+	for (var tool of $toolbox.find(".tool")) {
+		classes.push($(tool).attr("class"));
+	}
 	$toolbox.destroy();
 	$toolbox = $ToolBox(tools);
+	$toolbox.find(".tool").each(function (i) {
+		$(this).attr("class", classes[i]);
+	});
 	window.$toolbox = $toolbox;
 	prevent_selection($toolbox);
 

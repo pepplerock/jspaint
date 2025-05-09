@@ -9,14 +9,14 @@ import { TOOL_CURVE, TOOL_FILL, TOOL_MAGNIFIER, TOOL_PICK_COLOR, TOOL_POLYGON } 
 let clean_up_eye_gaze_mode = () => { };
 $G.on("eye-gaze-mode-toggled", () => {
 	if ($("body").hasClass("eye-gaze-mode")) {
-		init_eye_gaze_mode();
+		//init_eye_gaze_mode();
 	} else {
-		clean_up_eye_gaze_mode();
+		//clean_up_eye_gaze_mode();
 	}
 });
 if ($("body").hasClass("eye-gaze-mode")) {
 	// #region Initialization (continued; marking stuff that ideally should be at the end of the file)
-	init_eye_gaze_mode();
+	//init_eye_gaze_mode();
 	// #endregion
 }
 

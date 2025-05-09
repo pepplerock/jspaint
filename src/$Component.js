@@ -111,7 +111,7 @@ function $Component(title, className, orientation, $el) {
 	if ($("body").hasClass("eye-gaze-mode")) {
 		// @TODO: don't use an interval for this!
 		iid = setInterval(() => {
-			const scale = 3;
+			const scale = 2;
 			$c.css({
 				transform: `scale(${scale})`,
 				transformOrigin: "0 0",

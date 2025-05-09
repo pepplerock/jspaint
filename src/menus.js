@@ -900,28 +900,39 @@ const menus = {
 			],
 			checkbox: {
 				toggle: () => {
-					if (/eye-gaze-mode/i.test(location.hash)) {
-						// @TODO: confirmation dialog that you could cancel with dwell clicking!
-						// if (confirm("This will disable eye gaze mode.")) {
-						// change_some_url_params({
-						// 	"eye-gaze-mode": false,
-						// 	"vertical-color-box-mode": false,
-						// });
-						// }
-					} else if (/vertical-color-box-mode/i.test(location.hash)) {
+					if (/vertical-color-box-mode/i.test(location.hash)) {
 						change_url_param("vertical-color-box-mode", false);
 					} else {
 						change_url_param("vertical-color-box-mode", true);
 					}
 				},
 				check: () => {
-					return /vertical-color-box-mode|eye-gaze-mode/i.test(location.hash);
+					return /vertical-color-box-mode/i.test(location.hash);
 				},
 			},
-			enabled: () => {
-				return !/eye-gaze-mode/i.test(location.hash);
-			},
 			description: localize("Arranges the color box vertically."),
+		},
+		{
+			emoji_icon: "🔍",
+			// label: localize("&Enlarge Buttons"), // too specific; it also enlarges windows and other UI elements
+			label: localize("&Enlarge UI"), // a bit technical, but hopefully common enough
+			// label: localize("&Enlarge Interface"), // avoids an acronym, but not much less technical
+			speech_recognition: [
+				"enlarge buttons", "enlarge ui", "enlarge user interface", "enlarge interface", "enlarge the buttons", "enlarge the user interface", "enlarge the interface", "make buttons bigger", "make ui bigger", "make user interface bigger", "make interface bigger", "make the buttons bigger", "make the user interface bigger", "make the interface bigger", "bigger buttons", "bigger ui", "bigger user interface", "bigger interface",
+				"toggle enlarged buttons", "toggle enlarged ui", "toggle enlarged user interface", "toggle enlarged interface", "toggle bigger buttons", "toggle bigger ui", "toggle bigger user interface", "toggle bigger interface",
+				"enable enlarged buttons", "enable enlarged ui", "enable enlarged user interface", "enable enlarged interface", "enable bigger buttons", "enable bigger ui", "enable bigger user interface", "enable bigger interface",
+				"disable enlarged buttons", "disable enlarged ui", "disable enlarged user interface", "disable enlarged interface", "disable bigger buttons", "disable bigger ui", "disable bigger user interface", "disable bigger interface",
+				"shrink buttons", "shrink ui", "shrink user interface", "shrink interface", "shrink the buttons", "shrink the user interface", "shrink the interface", "make buttons smaller", "make ui smaller", "make user interface smaller", "make interface smaller", "make the buttons smaller", "make the user interface smaller", "make the interface smaller", "smaller buttons", "smaller ui", "smaller user interface", "smaller interface",
+			],
+			checkbox: {
+				toggle: () => {
+					change_url_param("eye-gaze-mode", !/eye-gaze-mode/i.test(location.hash));
+				},
+				check: () => {
+					return /eye-gaze-mode/i.test(location.hash);
+				},
+			},
+			description: localize("Enlarges buttons, windows, and menus for easier clicking."),
 		},
 		{
 			label: localize("&Difference Mode"),
