@@ -163,6 +163,24 @@ class LocalSession {
 				}, (error) => { });
 			} else { }
 		});
+		localStore.get(ls_key + "_connection_info", (err, data) => {
+			if (err) {
+				if (localStorageAvailable) {
+					show_error_message("Failed to retrieve connection info from local storage.", err);
+				} else {
+					// @TODO: DRY with storage manager message
+					showMessageBox({
+						message: "Please enable local storage in your browser's settings for local backup. It may be called Cookies, Storage, or Site Data.",
+					});
+				}
+			} else if (data) {
+				var parsedData = JSON.parse(data);
+				for (var i in parsedData) {
+					$("[name=ap" + i + "]").val(parsedData[i]);
+				}
+			} else {
+			}
+		});
 		this.save_colors = () => {
 			localStore.set(ls_key + "_colors", JSON.stringify(palette), (err) => {
 				if (err) {
@@ -213,6 +231,20 @@ class LocalSession {
 				}
 			});
 		};
+		this.save_connection_info = () => {
+			localStore.set(ls_key + "_connection_info", JSON.stringify({ "host": $("[name=aphost]").val(), "port": $("[name=apport]").val(), "slot": $("[name=apslot]").val(), "pass": $("[name=appass]").val() }), (err) => {
+				if (err) {
+					// @ts-ignore (quotaExceeded is added by storage.js)
+					if (err.quotaExceeded) {
+						storage_quota_exceeded();
+					} else {
+						// e.g. localStorage is disabled
+						// (or there's some other error?)
+						// @TODO: show warning with "Don't tell me again" type option
+					}
+				}
+			});
+		}
 		$G.on("session-update.session-hook", () => {
 			this.save_image_to_storage_soon();
 		});
@@ -224,6 +256,9 @@ class LocalSession {
 		});
 		$G.on("save-goal.session-hook", () => {
 			this.save_goal();
+		});
+		$G.on("save-connection-info.session-hook", () => {
+			this.save_connection_info();
 		});
 	}
 	end() {

@@ -21,6 +21,7 @@ $("<button>Connect!</button>").on("click", function () {
 			slotData = e;
 			if (slotData.version) $("#appaint-version").text("APWorld Version " + slotData.version);
 			//$goal_image.src = "images/archipelago/" + slotData.goal_image + ".png";
+			$G.triggerHandler("save-connection-info");
 			$G.triggerHandler("restore-colors");
 			update();
 			select_tool(default_tool);
