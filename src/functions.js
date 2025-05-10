@@ -2102,6 +2102,10 @@ function go_to_history_node(target_history_node, canceling) {
 		resize_canvas_without_saving_dimensions(w, h);
 	}
 
+	var similarity = calculate_similarity();
+	$status_similarity.text(similarity.toFixed(3) + "%/" + calculate_logic_similarity().toFixed(3) + "%");
+	send(similarity);
+
 	$canvas_area.trigger("resize");
 	$G.triggerHandler("session-update"); // autosave
 	$G.triggerHandler("history-update"); // update history view
