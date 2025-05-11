@@ -167,7 +167,6 @@ function show_text_client() {
 	$text_client_window.$content.append($("#text-client").css("display", "flex"));
 	$text_client_window.center();
 	$("#ap-command").on("keyup", function (e) {
-		console.log(e);
 		if (e.key == "Enter" && $("#ap-command").val().trim()) {
 			client.messages.say($("#ap-command").val());
 			$("#ap-command").val("");
