@@ -2102,9 +2102,7 @@ function go_to_history_node(target_history_node, canceling) {
 		resize_canvas_without_saving_dimensions(w, h);
 	}
 
-	var similarity = calculate_similarity();
-	$status_similarity.text(similarity.toFixed(3) + "%/" + calculate_logic_similarity().toFixed(3) + "%");
-	send(similarity);
+	send(calculate_similarity());
 
 	$canvas_area.trigger("resize");
 	$G.triggerHandler("session-update"); // autosave
@@ -2138,7 +2136,9 @@ function calculate_similarity() {
 		}
 	}
 	diff_ctx.putImageData(diff_pixels, 0, 0);
-	return s / 4800;
+	s /= 4800;
+	$status_similarity.text(s.toFixed(3) + "%/" + calculate_logic_similarity().toFixed(3) + "%");
+	return s;
 }
 
 function calculate_logic_similarity() {
@@ -2218,9 +2218,7 @@ function undoable({ name, icon, use_loose_canvas_changes, soft, assume_saved }, 
 	});
 	current_history_node.futures.push(new_history_node);
 	current_history_node = new_history_node;
-	var similarity = calculate_similarity();
-	$status_similarity.text(similarity.toFixed(3) + "%/" + calculate_logic_similarity().toFixed(3) + "%");
-	send(similarity);
+	calculate_similarity();
 
 	$G.triggerHandler("history-update"); // update history view
 
@@ -4275,7 +4273,7 @@ function show_multi_user_setup_dialog(from_current_document) {
 
 export {
 	$this_version_news,
-	apply_file_format_and_palette_info, are_you_sure, cancel, change_some_url_params, change_url_param, choose_file_to_paste, cleanup_bitmap_view, clear, confirm_overwrite_capability, delete_selection, deselect, detect_monochrome,
+	apply_file_format_and_palette_info, are_you_sure, calculate_similarity, cancel, change_some_url_params, change_url_param, choose_file_to_paste, cleanup_bitmap_view, clear, confirm_overwrite_capability, delete_selection, deselect, detect_monochrome,
 	edit_copy, edit_cut, edit_paste, exit_fullscreen_if_ios, file_load_from_url, file_new, file_open, file_print, file_save,
 	file_save_as, getSelectionText, get_all_url_params, get_history_ancestors, get_tool_by_id, get_uris, get_url_param, go_to_history_node, handle_keyshortcuts, has_any_transparency, image_attributes, image_flip_and_rotate, image_invert_colors, image_stretch_and_skew, load_image_from_uri, load_theme_from_text, make_history_node, make_monochrome_palette, make_monochrome_pattern, make_opaque, make_or_update_undoable, make_stripe_pattern, meld_selection_into_canvas,
 	meld_textbox_into_canvas, open_from_file, open_from_image_info, paste, paste_image_from_file, please_enter_a_number, read_image_file, redo, render_canvas_view, render_history_as_gif, reset_canvas_and_history, reset_file, reset_selected_colors, resize_canvas_and_save_dimensions, resize_canvas_without_saving_dimensions, sanity_check_blob, save_as_prompt, save_selection_to_file, select_all, select_tool, select_tools, set_all_url_params, set_magnification, show_about_paint, show_convert_to_black_and_white, show_custom_zoom_window, show_document_history, show_error_message, show_file_format_errors, show_multi_user_setup_dialog, show_news, show_resource_load_error_message, switch_to_polychrome_palette, toggle_grid,
