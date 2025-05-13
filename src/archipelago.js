@@ -32,34 +32,11 @@ $("<button>Connect!</button>").on("click", function () {
 					update();
 				})
 			}
-			client.messages.on("message", function (message) {
-				$("#text-log").append("<br>" + message);
-			})
-			client.items.on("itemsReceived", function (items) {
-				for (var item of items) {
-					if (item.name.endsWith("Trap")) {
-						switch (item.name) {
-							case "Undo Trap":
-								undo();
-								break;
-							case "Clear Image Trap":
-								clear();
-								break;
-							case "Invert Colors Trap":
-								image_invert_colors();
-								break;
-							case "Flip Horizontal Trap":
-								flip_horizontal();
-								break;
-							case "Flip Vertical Trap":
-								flip_vertical();
-								break;
-						}
-					}
-				}
-				update();
-			});
+			client.messages.on("message", onMessage);
+			client.items.on("itemsReceived", onReceive);
 			client.socket.on("disconnected", function () {
+				client.messages.off("message", onMessage);
+				client.items.off("itemsReceived", onReceive);
 				$ap_options_window.show();
 			})
 			$ap_options_window.hide();
@@ -94,6 +71,36 @@ function received() {
 		items.push("Brush");
 	}
 	return items;
+}
+
+function onReceive(items) {
+	console.log(items);
+	for (var item of items) {
+		if (item.name.endsWith("Trap")) {
+			switch (item.name) {
+				case "Undo Trap":
+					undo();
+					break;
+				case "Clear Image Trap":
+					clear();
+					break;
+				case "Invert Colors Trap":
+					image_invert_colors();
+					break;
+				case "Flip Horizontal Trap":
+					flip_horizontal();
+					break;
+				case "Flip Vertical Trap":
+					flip_vertical();
+					break;
+			}
+		}
+	}
+	update();
+}
+
+function onMessage(message) {
+	$("#text-log").append("<br>" + message);
 }
 
 function update() {
