@@ -60,7 +60,7 @@ function update_$swatch($swatch, new_color) {
 		$swatch[0].dataset.color = "";
 	} else if (typeof new_color === "string") {
 		$swatch.removeClass("pattern");
-		$swatch[0].dataset.color = new_color;
+		$swatch[0].dataset.color = legalizeColor(new_color);
 	} else if (new_color !== undefined) {
 		throw new TypeError(`argument to update_$swatch must be CanvasPattern or string (or undefined); got type ${typeof new_color}`);
 	}
