@@ -577,32 +577,32 @@ html, body, .jspaint {
 /* WET layout code for small viewports and eye gaze mode */
 /* could do it cleaner with JavaScript or CSS preprocessor */
 @media (max-width: 450px) {
-	.edit-colors-window {
+	/*.edit-colors-window {
 		overflow: hidden;
 	}
 	.edit-colors-window.defining-custom-colors .left-side {
 		/* display: none !important; */
 		/* this element is determining the height */
-		width: 0;
+		/*width: 0;
 		visibility: hidden;
 	}
 	.edit-colors-window:not(.defining-custom-colors) .right-side {
 		display: none !important;
-	}
+	}*/
 }
 /* WET layout code for small viewports and eye gaze mode */
-.eye-gaze-mode .edit-colors-window {
+/*.eye-gaze-mode .edit-colors-window {
 	overflow: hidden;
 }
 .eye-gaze-mode .edit-colors-window.defining-custom-colors .left-side {
 	/* display: none !important; */
 	/* this element is determining the height */
-	width: 0;
+	/*width: 0;
 	visibility: hidden;
 }
 .eye-gaze-mode .edit-colors-window:not(.defining-custom-colors) .right-side {
 	display: none !important;
-}
+}*/
 
 .save-as .window-content > form > div {
 	display: flex;
