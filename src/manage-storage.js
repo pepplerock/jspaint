@@ -67,11 +67,11 @@ function manage_storage() {
 		// and it was opening a new tab with the app but not loading the document, so this fixes that.
 		// (It seemed to be a separate storage area, despite the same origin? only glancing, not sure.)
 		const target = window.is_electron_app || is_discord_embed ? "_self" : "_blank";
-		const $open_link = $(E("a")).attr({ href, target }).text(localize("Open"));
+		//const $open_link = $(E("a")).attr({ href, target }).text(localize("Open"));
 		const $thumbnail_open_link = $(E("a")).attr({ href, target }).addClass("thumbnail-container");
 		$thumbnail_open_link.append($img);
 		$(E("td")).append($thumbnail_open_link).appendTo($tr);
-		$(E("td")).append($open_link).appendTo($tr);
+		//$(E("td")).append($open_link).appendTo($tr);
 		$(E("td")).append($remove).appendTo($tr);
 
 		$remove.on("click", () => {

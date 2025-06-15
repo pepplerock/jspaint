@@ -7,6 +7,7 @@ import { are_you_sure, change_url_param, clear, delete_selection, deselect, edit
 import { show_help } from "./help.js";
 import { is_discord_embed } from "./helpers.js";
 import { show_imgur_uploader } from "./imgur.js";
+import { manage_storage } from "./manage-storage.js";
 import { showMessageBox } from "./msgbox.js";
 
 const looksLikeChrome = !!(window.chrome && (window.chrome.loadTimes || window.chrome.csi));
@@ -138,8 +139,7 @@ const menus = {
 				"show autosaves", "show saves", "show saved documents", "show saved files", "show saved pictures", "show saved images", "show local storage",
 				"autosaves", "autosave", "saved documents", "saved files", "saved pictures", "saved images", "local storage",
 			],
-			enabled: false,
-			action: () => { /*manage_storage();*/ },
+			action: () => { manage_storage(); },
 			description: localize("Manages storage of previously created or opened pictures."),
 		},
 		MENU_DIVIDER,
