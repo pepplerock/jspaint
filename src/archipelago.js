@@ -170,7 +170,7 @@ function show_text_client() {
 		$text_client_window.close();
 		$("#ap-command").off("keyup");
 	}
-	$text_client_window = $Window({ title: localize("Archipelago Text Client"), resizable: true });
+	$text_client_window = $Window({ title: localize("Archipelago Text Client"), resizable: true, innerHeight: 300, innerWidth: 600 });
 	$text_client_window.onClosed(function () { $("body").append($("#text-client").css("display", "none")); })
 	$text_client_window.$content.append($("#text-client").css("display", "flex"));
 	$text_client_window.center();
