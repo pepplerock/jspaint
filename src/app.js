@@ -1685,7 +1685,7 @@ $goal.on("pointerdown", (e) => {
 		selected_tool.paint(goal_ctx, pointer.x, pointer.y);
 	}
 	$G.on("pointermove", goal_canvas_pointer_move);
-	$G.one("pointerup", () => {
+	$G.one("pointerup", (e) => {
 		button = undefined;
 		reverse = false;
 		pointer = to_canvas_coords(e);
