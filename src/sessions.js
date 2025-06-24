@@ -157,10 +157,21 @@ class LocalSession {
 			}
 		});
 		localStore.get(ls_key + "_goal", (err, uri) => {
-			if (err) { } else if (uri) {
+			if (err) {
+				if (localStorageAvailable) {
+					show_error_message("Failed to retrieve goal image from local storage.", err);
+				} else {
+					// @TODO: DRY with storage manager message
+					showMessageBox({
+						message: "Please enable local storage in your browser's settings for local backup. It may be called Cookies, Storage, or Site Data.",
+					});
+				}
+			} else if (uri) {
 				load_image_from_uri(uri).then((info) => {
 					open_from_image_info(info, null, null, true, false);
-				}, (error) => { });
+				}, (error) => {
+					show_error_message("Failed to open goal image from local storage.", error);
+				});
 			} else { }
 		});
 		localStore.get(ls_key + "_connection_info", (err, data) => {
