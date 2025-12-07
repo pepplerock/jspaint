@@ -681,7 +681,7 @@ export function show_deathlink_overlay() {
         const g = Math.floor(Math.random() * 255);
         const b = Math.floor(Math.random() * 255);
 
-        ctx.fillStyle = `rgba(${r}, ${g}, ${b}, 0.85)`;
+        ctx.fillStyle = `rgba(${r}, ${g}, ${b}, 0.5)`;
         ctx.fillRect(x, y, size, size);
     }
 }
