@@ -660,16 +660,15 @@ function reset_file() {
 }
 
 export function show_deathlink_overlay() {
-	// sends overlay of a confetti instead of wiping the entire canvas
     const canvas = main_canvas;
     const ctx = main_ctx;
 
     const w = canvas.width;
     const h = canvas.height;
 
-    const pieces = 100; // crank this up if you want pure chaos
-    const minSize = 8;
-    const maxSize = 30;
+    const pieces = 75; // bump this if you want more visual chaos
+    const minSize = 6;
+    const maxSize = 20;
 
     for (let i = 0; i < pieces; i++) {
         const x = Math.random() * w;
@@ -681,10 +680,33 @@ export function show_deathlink_overlay() {
         const g = Math.floor(Math.random() * 255);
         const b = Math.floor(Math.random() * 255);
 
-        ctx.fillStyle = `rgba(${r}, ${g}, ${b}, 0.5)`;
-        ctx.fillRect(x, y, size, size);
+        ctx.save();
+        ctx.translate(x, y);
+        ctx.rotate(Math.random() * Math.PI * 2);
+        ctx.fillStyle = `rgba(${r}, ${g}, ${b}, 0.9)`;
+
+        drawStar(ctx, size);
+        ctx.restore();
     }
 }
+
+function drawStar(ctx, size) {
+    const spikes = 5;
+    const outer = size;
+    const inner = size * 0.45;
+
+    ctx.beginPath();
+    for (let i = 0; i < spikes * 2; i++) {
+        const angle = (i * Math.PI) / spikes;
+        const radius = i % 2 === 0 ? outer : inner;
+        const px = Math.cos(angle) * radius;
+        const py = Math.sin(angle) * radius;
+        i === 0 ? ctx.moveTo(px, py) : ctx.lineTo(px, py);
+    }
+    ctx.closePath();
+    ctx.fill();
+}
+
 
 function reset_canvas_and_history() {
 	undos.length = 0;
