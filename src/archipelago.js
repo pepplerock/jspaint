@@ -1,5 +1,5 @@
 import { Client } from "../lib/archipelago.min.js";
-import { calculate_similarity, clear, image_invert_colors, reset_canvas_and_history, resize_canvas_without_saving_dimensions, select_tool, undo } from "./functions.js";
+import { calculate_similarity, clear, image_invert_colors, show_deathlink_overlay, reset_canvas_and_history, resize_canvas_without_saving_dimensions, select_tool, undo } from "./functions.js";
 import { flip_horizontal, flip_vertical } from "./image-manipulation.js";
 
 // Create a new instance of the Client class.
@@ -28,7 +28,7 @@ $("<button>Connect!</button>").on("click", function () {
 			if (slotData.death_link) {
 				client.deathLink.enableDeathLink();
 				client.deathLink.on("deathReceived", function () {
-					reset_canvas_and_history();
+					show_deathlink_overlay();
 					update();
 				})
 			}

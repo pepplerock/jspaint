@@ -659,6 +659,34 @@ function reset_file() {
 	update_title();
 }
 
+function show_deathlink_overlay() {
+    const canvas = main_canvas;
+    const ctx = main_ctx;
+    const cx = canvas.width / 2;
+    const cy = canvas.height / 2;
+    const size = Math.min(canvas.width, canvas.height) / 3;
+
+    ctx.save();
+    ctx.globalAlpha = 0.7;
+    ctx.fillStyle = "#ffd700"; // gold-ish
+
+    // draw a simple star
+    ctx.beginPath();
+    const spikes = 5;
+    for (let i = 0; i < spikes * 2; i++) {
+        const angle = (i * Math.PI) / spikes;
+        const radius = i % 2 === 0 ? size : size / 2;
+        const x = cx + Math.cos(angle) * radius;
+        const y = cy + Math.sin(angle) * radius;
+        if (i === 0) ctx.moveTo(x, y);
+        else ctx.lineTo(x, y);
+    }
+    ctx.closePath();
+    ctx.fill();
+
+    ctx.restore();
+}
+
 function reset_canvas_and_history() {
 	undos.length = 0;
 	redos.length = 0;
