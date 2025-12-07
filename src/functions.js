@@ -659,7 +659,7 @@ function reset_file() {
 	update_title();
 }
 
-function show_deathlink_overlay() {
+export function show_deathlink_overlay() {
     const canvas = main_canvas;
     const ctx = main_ctx;
     const cx = canvas.width / 2;
