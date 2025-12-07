@@ -666,7 +666,7 @@ export function show_deathlink_overlay() {
     const w = canvas.width;
     const h = canvas.height;
 
-    const pieces = 75; // bump this if you want more visual chaos
+    const pieces = 50; // bump this if you want more visual chaos
     const minSize = 6;
     const maxSize = 20;
 
@@ -683,7 +683,7 @@ export function show_deathlink_overlay() {
         ctx.save();
         ctx.translate(x, y);
         ctx.rotate(Math.random() * Math.PI * 2);
-        ctx.fillStyle = `rgba(${r}, ${g}, ${b}, 0.9)`;
+        ctx.fillStyle = `rgba(${r}, ${g}, ${b}, 0.5)`;
 
         drawStar(ctx, size);
         ctx.restore();
