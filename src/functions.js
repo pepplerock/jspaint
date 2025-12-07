@@ -683,6 +683,7 @@ export function show_deathlink_overlay() {
 
         ctx.fillStyle = `rgba(${r}, ${g}, ${b}, 0.85)`;
         ctx.fillRect(x, y, size, size);
+    }
 }
 
 function reset_canvas_and_history() {
