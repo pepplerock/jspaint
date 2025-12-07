@@ -660,6 +660,7 @@ function reset_file() {
 }
 
 export function show_deathlink_overlay() {
+	// sends overlay of a star instead of wiping the entire canvas
     const canvas = main_canvas;
     const ctx = main_ctx;
     const cx = canvas.width / 2;
