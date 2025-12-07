@@ -667,7 +667,7 @@ export function show_deathlink_overlay() {
     const w = canvas.width;
     const h = canvas.height;
 
-    const pieces = 300; // crank this up if you want pure chaos
+    const pieces = 100; // crank this up if you want pure chaos
     const minSize = 8;
     const maxSize = 30;
 
