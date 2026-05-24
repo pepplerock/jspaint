@@ -302,4 +302,3 @@ function version_below(version) {
 }
 
 export { deathlink, final_height, final_width, received, send, show_text_client, slotData, version_below };
-
