@@ -1,5 +1,5 @@
 import { Client } from "../lib/archipelago.min.js";
-import { calculate_similarity, clear, image_invert_colors, reset_canvas_and_history, resize_canvas_without_saving_dimensions, select_tool, set_magnification, undo } from "./functions.js";
+import { calculate_similarity, clear, image_invert_colors, resize_canvas_without_saving_dimensions, select_tool, set_magnification, undo, undoable } from "./functions.js";
 import { show_help } from "./help.js";
 import { flip_horizontal, flip_vertical } from "./image-manipulation.js";
 import { tools } from "./tools.js";
@@ -47,7 +47,7 @@ $("<button>Connect!</button>").on("click", function () {
 			if (slotData.death_link) {
 				client.deathLink.enableDeathLink();
 				client.deathLink.on("deathReceived", function () {
-					reset_canvas_and_history();
+					deathlink_confetti();
 					update();
 				});
 			}
@@ -88,6 +88,48 @@ function send(similarity) {
 	}
 	client.check(...locations);
 	if (similarity >= slotData.goal_percent) client.goal();
+}
+
+
+function draw_star(ctx, x, y, outer_radius, inner_radius, points, rotation) {
+	ctx.beginPath();
+	for (var i = 0; i < points * 2; i++) {
+		var radius = i % 2 === 0 ? outer_radius : inner_radius;
+		var angle = rotation + i * Math.PI / points;
+		var point_x = x + Math.cos(angle) * radius;
+		var point_y = y + Math.sin(angle) * radius;
+		if (i === 0) {
+			ctx.moveTo(point_x, point_y);
+		} else {
+			ctx.lineTo(point_x, point_y);
+		}
+	}
+	ctx.closePath();
+	ctx.fill();
+}
+
+function deathlink_confetti() {
+	undoable({ name: "DeathLink Confetti" }, function () {
+		var width = main_canvas.width;
+		var height = main_canvas.height;
+		var confetti_count = Math.max(50, Math.min(300, Math.round(width * height / 4000)));
+
+		main_ctx.save();
+		main_ctx.globalAlpha = 0.4;
+		for (var i = 0; i < confetti_count; i++) {
+			var x = Math.random() * width;
+			var y = Math.random() * height;
+			var outer_radius = 3 + Math.random() * 10;
+			var inner_radius = outer_radius * (0.35 + Math.random() * 0.2);
+			var hue = Math.floor(Math.random() * 360);
+			var saturation = 70 + Math.floor(Math.random() * 30);
+			var lightness = 45 + Math.floor(Math.random() * 25);
+
+			main_ctx.fillStyle = "hsl(" + hue + ", " + saturation + "%, " + lightness + "%)";
+			draw_star(main_ctx, x, y, outer_radius, inner_radius, 5, Math.random() * Math.PI * 2);
+		}
+		main_ctx.restore();
+	});
 }
 
 function received() {
@@ -302,3 +344,4 @@ function version_below(version) {
 }
 
 export { deathlink, final_height, final_width, received, send, show_text_client, slotData, version_below };
+
