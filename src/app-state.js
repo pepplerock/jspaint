@@ -89,7 +89,7 @@ const default_brush_shape = "circle";
 const default_brush_size = 4;
 const default_eraser_size = 8;
 const default_airbrush_size = 9;
-const default_pencil_size = 1;
+const default_pencil_size = 2;
 const default_stroke_size = 1; // applies to lines, curves, shape outlines
 
 /** @type {BrushShape} */
